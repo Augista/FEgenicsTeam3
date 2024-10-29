@@ -8,10 +8,30 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        kumbh: ["(var(--font-kumbh))"],
       },
+      colors: {
+      button: {
+        DEFAULT: '#407BFF',
+      },
+      light: {
+        DEFAULT: '#ecf4fe',
+        hover: '#e3eefe',
+        active: '#c5dcfc',
+      },
+      normal: {
+        DEFAULT: '#458ff6',
+        hover: '#3e81dd',
+        active: '#3772c5',
+      },
+      dark: {
+        DEFAULT: '#346bb9',
+        hover: '#29569',
+        active: '#1f406f',
+      },
+      darker: '#183256',
+    },
     },
   },
   plugins: [],
