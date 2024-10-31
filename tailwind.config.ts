@@ -9,12 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        kumbh: ['"Kumbh Sans"', 'sans-serif'],
+        kumbh: ["(var(--font-kumbh))"],
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      background: {
+        DEFAULT: '#CDDDFF',
       },
+      button: {
+        DEFAULT: '#407BFF',
+      },
+      light: {
+        DEFAULT: '#ecf4fe',
+        hover: '#e3eefe',
+        active: '#c5dcfc',
+      },
+      normal: {
+        DEFAULT: '#458ff6',
+        hover: '#3e81dd',
+        active: '#3772c5',
+      },
+      dark: {
+        DEFAULT: '#346bb9',
+        hover: '#29569',
+        active: '#1f406f',
+      },
+      darker: '#183256',
+    },
     },
   },
   plugins: [],

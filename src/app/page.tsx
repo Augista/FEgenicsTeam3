@@ -1,10 +1,5 @@
-import Image from "next/image";
-import Login from "./components/login";
-import Register from "./components/register";
+import Landing from "./container/landing/landing-page";
 
 export default function Home() {
-  return (
-    <Register/>
-    
-  );
+  return <Landing/>
 }
