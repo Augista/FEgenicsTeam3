@@ -30,7 +30,7 @@ export default function Button({
 
   return (
     <a href={href}>
-      <button className={`w-fit bg-button rounded-md ${sizeClasses[size]}`}>
+      <button className={`bg-button w-fit rounded-md ${sizeClasses[size]}`}>
         <Typography
           as="span"
           variant={typographyVariant[size]}

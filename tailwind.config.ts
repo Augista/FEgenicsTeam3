@@ -12,6 +12,9 @@ const config: Config = {
         kumbh: ["(var(--font-kumbh))"],
       },
       colors: {
+      background: {
+        DEFAULT: '#CDDDFF',
+      },
       button: {
         DEFAULT: '#407BFF',
       },
