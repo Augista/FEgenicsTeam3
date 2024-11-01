@@ -35,10 +35,10 @@ function DoctorCard({
         {price}
       </Typography>
       <div className="flex flex-col gap-2 mt-2">
-        <Button href="" size="medium" className="w-[331px]">
+        <Button href="" size="medium" className="w-[330px]">
           Konsultasi Sekarang
         </Button>
-        <Button href="" size="medium" className="w-[331px]">
+        <Button href="" size="medium" className="w-[330px]">
           Buat Jadwal
         </Button>
       </div>
