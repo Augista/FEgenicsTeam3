@@ -1,5 +1,13 @@
+import Navbar from "@/components/Navbar";
 import Konsultasi from "./container/konsultasi-page";
+import Footer from "@/components/Footer";
 
 export default function SolutionPage() {
-  return <Konsultasi />;
+  return(
+    <>
+      <Navbar />
+      <Konsultasi />
+      <Footer />
+    </>
+  );
 }
