@@ -5,8 +5,7 @@ import Typography from '@/components/Typography';
 export default function Footer() {
     return (
         <footer className="bg-[#EDF2FF] px-6 py-12 sm:px-20 lg:px-24">
-            <div className="mx-auto flex flex-row space-x-24">
-                {/* Logo and Description */}
+            <div className="mx-auto flex flex-col space-y-8 md:space-y-0 md:flex-row md:space-x-12 lg:space-x-24">
                 <div>
                     <Typography as="h3" variant="h6" className="text-black">
                         Logo | Nama
@@ -22,7 +21,6 @@ export default function Footer() {
                     </Typography>
                 </div>
 
-                {/* Quick Links */}
                 <div>
                     <Typography as="h3" variant="h6" className="text-black">
                         Quick Links
@@ -40,7 +38,6 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                {/* Contact */}
                 <div>
                     <Typography as="h3" variant="h6" className="text-black">
                         Contact
@@ -58,7 +55,6 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Help & Support */}
                 <div>
                     <Typography as="h3" variant="h6" className="text-black">
                         Help & Support
@@ -77,13 +73,13 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Divider */}
+            {/* divider */}
             <hr className="my-8 border-t-2 border-gray-300" />
 
-            {/* Footer Bottom */}
-            <div className="flex flex-col items-center justify-between text-gray-600 sm:flex-row">
+            {/* bottom part */}
+            <div className="flex flex-col items-center justify-between text-gray-600 space-y-2 sm:flex-row">
                 <Typography className="text-sm">&copy; Copyright 2024</Typography>
-                <div className="flex mt-2 gap-x-2 sm:mt-0">
+                <div className="flex gap-x-2 text-center">
                     <Typography className="text-sm">
                         All rights reserved
                     </Typography>
