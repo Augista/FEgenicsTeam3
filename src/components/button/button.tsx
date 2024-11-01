@@ -7,12 +7,17 @@ interface ButtonProps {
   children: ReactNode;
   size?: "small" | "medium" | "large";
   className?: string;
+  bgColor?: string;
+  textColor?: string;
 }
 
 export default function Button({
   href,
+  className,
   children,
   size = "medium",
+  bgColor = "bg-button",
+  textColor = "text-white",
 }: ButtonProps) {
   const sizeClasses = {
     small: "px-6 py-1",
@@ -29,13 +34,13 @@ export default function Button({
   };
 
   return (
-    <a href={href}>
-      <button className={`w-fit bg-button rounded-md ${sizeClasses[size]}`}>
+    <a href={href} className="group">
+      <button className={`w-fit ${bgColor} rounded-md ${sizeClasses[size]} ${className}`}>
         <Typography
           as="span"
           variant={typographyVariant[size]}
           weight="medium"
-          className="text-white"
+          className={`${textColor}`}
         >
           {children}
         </Typography>
