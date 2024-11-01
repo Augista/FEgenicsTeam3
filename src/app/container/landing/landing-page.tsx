@@ -8,7 +8,7 @@ export default function Landing() {
   return (
     <section className="w-full h-full">
       <section className="h-screen w-full flex flex-col justify-center items-center overflow-hidden">
-        <div className="flex flex-col justify-center items-center h-full space-y-6">
+        <div className="flex flex-col justify-center items-center h-full space-y-6 pt-20">
           <NextImage
             src="/landing/landing-img.png"
             alt="landing"
