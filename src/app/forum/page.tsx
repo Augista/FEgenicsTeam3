@@ -5,7 +5,7 @@ export default function Forum(){
     return (
         <>
             <ForumHome/>
-            <ForumChoice title="Judul" choices={["Button", "Check", "Dor"]}/>
+            <ForumChoice title="Kategori" choices={["Semua", "Kesehatan Fisik", "Kesehatan Mental", "Penyakit & Pengobatan", "Gaya Hidup Sehat", "Olahraga & Kebugaran", "Nutrisi & Diet"]}/>
         </>
     )
 }

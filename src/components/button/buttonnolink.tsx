@@ -17,7 +17,7 @@ const ButtonNoLink = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // Define classes based on the variant prop
     const variantClasses = {
       primary: "bg-button text-white hover:bg-primary-dark focus:bg-primary-dark",
-      outline: "border-2 border-[#407BFF] text-[#407BFF] hover:text-white hover:bg-primary focus:text-white focus:bg-primary",
+      outline: "text-[#407BFF] hover:text-white hover:bg-primary focus:text-white focus:bg-primary",
     }
     // Define classes based on the size prop
     const sizeClasses = {
@@ -37,7 +37,7 @@ const ButtonNoLink = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
         <button
           ref={ref}
-          className={clsx(`w-fit rounded-md ${sizeClasses[size]} ${variantClasses[variant]} ${className}`
+          className={clsx(`border-2 border-[#407BFF] w-fit rounded-md ${sizeClasses[size]} ${variantClasses[variant]} ${className}`
           )}
           {...rest}
         >

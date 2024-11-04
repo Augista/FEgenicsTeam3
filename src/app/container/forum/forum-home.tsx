@@ -12,7 +12,7 @@ export default function ForumHome(){
                         <Typography variant="h4" weight="semibold">Berbagi Pengalaman melalui Forum X</Typography>
                         <Typography variant="bl" className="text-[#7D7987] text-[24px]">Akses layanan konsultasi kesehatan dengan dokter profesional secara online 24/7.</Typography>
                     </div>
-                    <Button size="large" href="/forum" className="justify-center py-4 px-[62px] bg-gradient-to-r from-[#407BFF] via-[#1678F2] to-[#E3EBFF]">Diskusi Sekarang</Button>
+                    <Button size="large" href="#search" className="justify-center py-4 px-[62px] bg-gradient-to-r from-[#407BFF] via-[#1678F2] to-[#E3EBFF]">Diskusi Sekarang</Button>
                 </div>
                 <NextImage src="/forum/mental-health-problem.png" width={509} height={463} alt="mental-health-problem" layout='responsive' className="w-full h-auto" />
             </div>
