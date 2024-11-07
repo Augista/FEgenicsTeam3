@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import Button from '@/components/button/button';
@@ -11,7 +11,17 @@ import RouterLink from '@/links/RouterLink';
 
 export default function Navbar({ className = "" }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userName, setUserName] = useState<string | null>(null); // Menyimpan nama user
     const pathname = usePathname();
+
+    // Memeriksa status login dan mendapatkan nama pengguna
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const storedUserName = localStorage.getItem("userName"); // Mendapatkan nama pengguna dari localStorage
+        setIsLoggedIn(!!token);
+        setUserName(storedUserName); // Mengatur nama pengguna jika ada
+    }, []);
 
     const getClassName = (href: string) => {
         return pathname === href ? "text-[#7b7b7b]" : "text-black";
@@ -26,6 +36,14 @@ export default function Navbar({ className = "" }) {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
+        setIsLoggedIn(false);
+        setUserName(null);
+        alert("You have been logged out.");
     };
 
     return (
@@ -58,10 +76,16 @@ export default function Navbar({ className = "" }) {
                     ))}
                 </div>
 
-                <div className="hidden lg:block">
-                    <Button size="large" href="/login">
-                        Masuk
-                    </Button>
+                <div className="hidden lg:flex items-center">
+                    {isLoggedIn ? (
+                        <div className="flex items-center space-x-4">
+                            <Typography variant='t' weight='medium' className="text-[#1678F2]">Hi, {userName}!</Typography> {/* Menampilkan nama user */}
+                        </div>
+                    ) : (
+                        <Button size="large" href="/login">
+                            Masuk
+                        </Button>
+                    )}
                 </div>
 
                 {/* Burger menu for small viewport */}
@@ -111,6 +135,18 @@ export default function Navbar({ className = "" }) {
                         </Typography>
                     </RouterLink>
                 ))}
+                {isLoggedIn ? (
+                    <button
+                        className="text-white transition-all duration-300 hover:-translate-y-0.5 hover:font-bold hover:underline hover:decoration-[#407BFF]"
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
+                ) : (
+                    <RouterLink href="/login" className="text-white">
+                        Masuk
+                    </RouterLink>
+                )}
             </div>
         </>
     );
