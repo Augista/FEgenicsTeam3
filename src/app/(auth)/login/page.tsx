@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+
 import NextImage from "@/components/NextImage";
 import Typography from "@/components/Typography";
 import InputWithIcon from "@/components/form/input";
@@ -17,6 +18,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const router = useRouter();
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,7 +48,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.API_URL}/auth/login`, {
+      const response = await fetch(baseURL + '/auth/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
