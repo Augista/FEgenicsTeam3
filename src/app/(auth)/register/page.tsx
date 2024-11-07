@@ -19,6 +19,7 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,7 +50,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.API_URL}/auth/register`, {
+      const response = await fetch(baseURL + '/auth/register', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
