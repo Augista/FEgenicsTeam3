@@ -1,12 +1,12 @@
 import Navbar from "@/components/Navbar";
-import Landing from "./container/landing/landing-page";
+import LandingPage from "./home/page";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
       <Navbar/>
-      <Landing/>
+      <LandingPage/>
       <Footer/>
     </>
   )
