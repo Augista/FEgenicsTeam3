@@ -1,5 +1,6 @@
 // components/Button.js
 import { ButtonHTMLAttributes, ReactNode } from "react";
+import { CiSearch } from "react-icons/ci";
 import React from "react";
 import Typography from "../Typography";
 import clsx from "clsx";
@@ -13,11 +14,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
 const ButtonNoLink = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, size = "medium", variant = "primary", className, ...rest }, ref) => {
+  ({ children, size = "medium", variant = "primary", className,  ...rest }, ref) => {
     // Define classes based on the variant prop
     const variantClasses = {
       primary: "bg-button text-white hover:bg-primary-dark focus:bg-primary-dark",
-      outline: "text-[#407BFF] hover:text-white hover:bg-primary focus:text-white focus:bg-primary",
+      outline: "text-[#407BFF] hover:text-white focus:text-white",
     }
     // Define classes based on the size prop
     const sizeClasses = {

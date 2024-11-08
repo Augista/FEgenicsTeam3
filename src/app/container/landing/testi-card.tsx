@@ -1,6 +1,6 @@
-import React from 'react';
-import Typography from '@/components/Typography';
-import NextImage from '@/components/NextImage';
+import React from "react";
+import Typography from "@/components/Typography";
+import NextImage from "@/components/NextImage";
 import { FaStar } from "react-icons/fa6";
 
 interface TestimonialCardProps {
@@ -11,7 +11,13 @@ interface TestimonialCardProps {
   rating?: number;
 }
 
-function TestimonialCard({ testimonial, profileSrc, name, role, rating = 5 }: TestimonialCardProps) {
+function TestimonialCard({
+  testimonial,
+  profileSrc,
+  name,
+  role,
+  rating = 5,
+}: TestimonialCardProps) {
   return (
     <div className="shadow-lg border border-button p-10 space-y-4 rounded-xl flex flex-col justify-around items-center w-72 text-center">
       <div className="flex justify-center space-x-1">

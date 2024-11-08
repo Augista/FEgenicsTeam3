@@ -8,7 +8,7 @@ export default function Landing() {
   return (
     <section className="w-full h-full">
       <section className="h-screen w-full flex flex-col justify-center items-center overflow-hidden">
-        <div className="flex flex-col justify-center items-center h-full space-y-6">
+        <div className="flex flex-col justify-center items-center h-full space-y-6 pt-20">
           <NextImage
             src="/landing/landing-img.png"
             alt="landing"
@@ -16,41 +16,59 @@ export default function Landing() {
             height={400}
             className=""
           />
-          <Typography variant="h6" as="h6" weight="medium" className="text-center">
+          <Typography
+            variant="h6"
+            as="h6"
+            weight="medium"
+            className="text-center"
+          >
             Satu Tempat untuk Kesehatanmu:
             <br /> Konsultasi, Pembelajaran, hingga Diskusi
           </Typography>
-          <Button href="" size="small" className="mt-4">Mulai Sekarang</Button>
+          <Button href="" size="small" className="mt-4">
+            Mulai Sekarang
+          </Button>
         </div>
       </section>
       <section className="h-full w-full overflow-hidden bg-light">
         <div className="m-20 text-center flex flex-col justify-start items-center">
           <div className="mb-16">
-            <Typography variant="t" weight="medium" className="text-center text-button">
+            <Typography
+              variant="t"
+              weight="medium"
+              className="text-center text-button"
+            >
               FEATURES
             </Typography>
-            <Typography variant="h6" as="h6" weight="bold" className="text-center text-button">
+            <Typography
+              variant="h6"
+              as="h6"
+              weight="bold"
+              className="text-center text-button"
+            >
               Apa Saja yang Disediakan?
             </Typography>
           </div>
           <div className="flex flex-col w-full justify-center items-center space-y-8">
-            <FeatureCard 
+            <FeatureCard
               title="Konsultasi Langsung dengan Dokter untuk Kesehatan Menyeluruh"
               description="Jaga kesehatan tubuh dan pikiranmu dengan berbicara langsung kepada dokter profesional. Dapatkan saran yang tepat untuk setiap masalah kesehatan yang kamu alami, baik fisik maupun mental."
               imageSrc="/landing/konsul.png"
-              buttonText="Chat Sekarang" 
-                    />
-            <FeatureCard 
+              buttonText="Chat Sekarang"
+            />
+            <FeatureCard
               title="Learning Path Terstruktur untuk Meningkatkan Kesehatanmu"
               description="Dari tips menjaga kebugaran fisik, panduan nutrisi, hingga kesejahteraan mental, semua bisa kamu pelajari untuk hidup yang lebih baik."
               imageSrc="/landing/belajar.png"
               buttonText="Belajar Sekarang"
               className="flex-row-reverse items-start"
             />
-            <FeatureCard 
+            <FeatureCard
               title="Forum Diskusi Kesehatan untuk Berbagi Pengalaman dan Solusi"
               description="Bergabunglah dengan komunitas yang peduli pada kesehatan. Di sini, kamu bisa berbagi cerita, menemukan jawaban, dan saling mendukung dalam perjalanan menuju hidup yang lebih sehat."
-              imageSrc="/landing/diskusi.png" buttonText="Diskusi Sekarang"           />
+              imageSrc="/landing/diskusi.png"
+              buttonText="Diskusi Sekarang"
+            />
           </div>
         </div>
       </section>
@@ -58,10 +76,19 @@ export default function Landing() {
       <section className="h-screen w-full overflow-hidden">
         <div className="m-20 text-center flex flex-col justify-start items-center">
           <div className="mb-16">
-            <Typography variant="t" weight="medium" className="text-center text-button">
+            <Typography
+              variant="t"
+              weight="medium"
+              className="text-center text-button"
+            >
               TESTIMONIALS
             </Typography>
-            <Typography variant="h6" as="h6" weight="bold" className="text-center text-button">
+            <Typography
+              variant="h6"
+              as="h6"
+              weight="bold"
+              className="text-center text-button"
+            >
               Apa yang Mereka Katakan?
             </Typography>
           </div>

@@ -1,18 +1,21 @@
 "use client"
 import Typography from "@/components/Typography";
-import ButtonNoLink from "@/components/button/ButtonNoLink";
-import { useState } from "react";
+import ButtonNoLink from "@/components/button/buttonnolink";
+import { useState, useEffect } from "react";
 
 interface ForumChoiceProps {
-  title: string;
-  choices: string[];
+  title?: string;
+  choices?: string[];
+  defaultChoice: string;
+  handleFilter: (choice: string) => void;
 }
 
-export default function ForumChoice({ title = "Judul", choices = [] }: ForumChoiceProps) {
-  const [choose, setChoose] = useState<string | null>(null);
+export default function ForumChoice({ title = "Judul", choices = [], defaultChoice="", handleFilter=()=>{}}: ForumChoiceProps) {
+  const [choose, setChoose] = useState<string>(defaultChoice);
 
   const handleClick = (choice: string) => {
     setChoose(choice);
+    handleFilter(choice);
   }
 
   return (

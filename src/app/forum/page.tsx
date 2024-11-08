@@ -1,11 +1,13 @@
 import ForumHome from "../container/forum/forum-home";
-import ForumChoice from "../container/forum/forum-choice";
+
+import MainLayout from "./layout";
+import ForumList from "../container/forum/forum-list";
 
 export default function Forum(){
     return (
-        <>
+        <MainLayout>
             <ForumHome/>
-            <ForumChoice title="Kategori" choices={["Semua", "Kesehatan Fisik", "Kesehatan Mental", "Penyakit & Pengobatan", "Gaya Hidup Sehat", "Olahraga & Kebugaran", "Nutrisi & Diet"]}/>
-        </>
+            <ForumList/>
+        </MainLayout>
     )
 }
