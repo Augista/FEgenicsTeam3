@@ -1,16 +1,21 @@
 "use client"
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import QuestionBox from "./question-box";
 import clsxm from "@/lib/clsxm";
 import Typography from "@/components/Typography";
 import ButtonNoLink from "@/components/button/buttonnolink";
+import ForumReply from "./forum-reply";
 
+interface ReplyProps {
+    user: string;
+    createdAt: Date;
+    reply: string;
+}
 
 interface QuestionBoxProps {
     id: number;
     title: string;
-    reply: string[];
+    reply: ReplyProps[];
     category: string;
 }
 
@@ -25,7 +30,13 @@ const questionList = [
     {
         id: 2,
         title: "Bagaimana cara mengatasi burnout di tempat kerja?",
-        reply: [],
+        reply: [
+            {
+                user: "User1",
+                createdAt: "17/08/2023",
+                reply: "Mulai olahraga tanpa harus pergi ke gym sebenarnya gampang dan fleksibel banget. Aku biasanya mulai dengan bodyweight exercises di rumah, kayak push-up, sit-up, plank, atau squat. Latihan-latihan ini gak butuh alat sama sekali, jadi bisa langsung aja di ruang tamu atau kamar. Aku sering juga cari video workout di YouTube buat variasi, apalagi kalau lagi bosen sama gerakan yang itu-itu aja. Di sana banyak banget pilihan, dari yoga yang lebih tenang sampai HIIT yang intens buat cardio, jadi bisa sesuaiin sama mood."
+            },
+        ],
         category: "Penyakit & Pengobatan",
     },
     {
@@ -129,7 +140,7 @@ export default function ForumDetailPage() {
     },[id])
 
     return (
-        <div className="mt-32 flex flex-col">
+        <div className="mt-32 flex flex-col mx-20 gap-4">
             <div  className={clsxm("rounded-[10px] border-[1px] border-[#407BFF]",
             "p-[20px] md:p-[50px] w-full m-auto h-auto"
             )}>
@@ -138,6 +149,15 @@ export default function ForumDetailPage() {
                     <Typography className='text-[36px]'>{question.title}</Typography>
                 </div>
             </div>
+            <div className="flex flex-col gap-[100px]">
+                <ButtonNoLink className="w-full" >Jawab</ButtonNoLink>
+                {question.reply  && question.reply.map((reply, index) => {
+                    return (
+                        <ForumReply key={index} user={reply.user} createdAt={reply.createdAt}>{reply.reply}</ForumReply>
+                    )
+                })}
+            </div>
+            <div className="h-8"></div>
         </div>
     )
 }

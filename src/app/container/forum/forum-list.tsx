@@ -172,7 +172,7 @@ export default function ForumList() {
 
 
     return (
-        <div id="detail-information" className="flex flex-col gap-[100px] max-w-[1206px] mx-10 lg:mx-20 xl:m-auto pt-32">
+        <div id="detail-information" className="flex flex-col gap-[100px] max-w-[1206px] mx-10 lg:mx-[80px] xl:m-auto pt-32">
             <ForumSearch  onClick={handleSearch}/>
             <ForumChoice title="Kategori" choices={["Semua", "Kesehatan Fisik", "Kesehatan Mental", "Penyakit & Pengobatan", "Gaya Hidup Sehat", "Olahraga & Kebugaran", "Nutrisi & Diet"]} defaultChoice="Semua" handleFilter={handleFilter}/>
             <ForumChoice title="Topik Terknini" choices={["Kesehatan Jantung", "Kesehatan Mental", "Depresi & Anxienty", "Gangguan Jiwa", "Coronavirus", "Obat Diabetes", "Olahraga Yoga"]} defaultChoice="" handleFilter={handleFilter}/>
