@@ -172,12 +172,12 @@ export default function ForumList() {
 
 
     return (
-        <div id="detail-information" className="flex flex-col gap-[100px] max-w-[1206px] m-auto pt-32">
+        <div id="detail-information" className="flex flex-col gap-[100px] max-w-[1206px] mx-10 lg:mx-20 xl:m-auto pt-32">
             <ForumSearch  onClick={handleSearch}/>
             <ForumChoice title="Kategori" choices={["Semua", "Kesehatan Fisik", "Kesehatan Mental", "Penyakit & Pengobatan", "Gaya Hidup Sehat", "Olahraga & Kebugaran", "Nutrisi & Diet"]} defaultChoice="Semua" handleFilter={handleFilter}/>
             <ForumChoice title="Topik Terknini" choices={["Kesehatan Jantung", "Kesehatan Mental", "Depresi & Anxienty", "Gangguan Jiwa", "Coronavirus", "Obat Diabetes", "Olahraga Yoga"]} defaultChoice="" handleFilter={handleFilter}/>
             <div className="flex flex-col gap-y-[50px]">
-                <div className="grid grid-cols-2 gap-[26px]">{filteredList.map((question) => (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-[26px]">{filteredList.map((question) => (
                     <QuestionBox key={question.id} href={`/forum/${question.id}`} category={question.category}>{question.title}</QuestionBox>
                 ))}</div>
                 <div className="flex flex-col items-center gap-2.5 mb-32">
