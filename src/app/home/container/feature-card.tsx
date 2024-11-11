@@ -19,21 +19,21 @@ function FeatureCard({
   className,
 }: FeatureCardProps) {
   return (
-    <div className={`flex w-4/5 justify-around items-center ${className}`}>
+    <div className={`flex flex-col w-[300px] space-y-4 md:space-y-0 md:space-x-12 md:w-fit justify-around items-center ${className}`}>
       <div className="bg-white w-fit p-8 rounded-full">
         <NextImage
           src={imageSrc}
           alt={title}
           width={180}
           height={180}
-          className="rounded-full"
+          className="w-[100px] md:w-[120px] lg:w-[180px] rounded-full"
         />
       </div>
-      <div className="flex items-start flex-col space-y-4 w-[30rem]">
-        <Typography variant="h6" as="h6" weight="medium" className="text-start">
+      <div className="flex items-center md:items-start flex-col space-y-4  md:w-[30rem]">
+        <Typography variant="t" weight="medium" className="text-center md:text-start">
           {title}
         </Typography>
-        <Typography variant="bs" className="text-gray-400 text-start">
+        <Typography variant="bs" className="text-gray-400 text-center md:text-start">
           {description}
         </Typography>
         <Button size="small" href="">

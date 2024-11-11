@@ -3,11 +3,12 @@ import { ReactNode } from "react";
 import Typography from "../Typography";
 
 interface ButtonProps {
-  href: string;
   children: ReactNode;
   size?: "small" | "medium" | "large";
   className?: string;
+  href?: string;
   bgColor?: string;
+  onClick?: () => void;
   textColor?: string;
 }
 
