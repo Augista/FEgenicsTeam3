@@ -29,7 +29,7 @@ export default function Navbar({ className = "" }) {
 
     const links = [
         { href: "/", text: "Beranda" },
-        { href: "/contact", text: "Konsultasi" },
+        { href: "/konsultasi", text: "Konsultasi" },
         { href: "/learning", text: "Learning Path" },
         { href: "/forum", text: "Forum" },
     ];
@@ -49,7 +49,7 @@ export default function Navbar({ className = "" }) {
     return (
         <>
             <nav
-                className={`flex items-center fixed top-0 left-0 w-full z-50 justify-between py-6 px-6 sm:px-20 bg-white ${className}`}
+                className={`flex items-center sticky top-0 left-0 w-full z-50 justify-between py-6 px-6 sm:px-20 bg-white ${className}`}
             >
                 {/* Logo */}
                 <Link href="/" className="flex items-center scale-75 lg:scale-90">
