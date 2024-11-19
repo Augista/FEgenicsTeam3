@@ -60,11 +60,11 @@ export default function Login() {
 
       if (result.success) {
         const { token, data } = result;
-        console.log(data); // Check the response structure here
+        console.log(data); 
         localStorage.setItem("token", token);
-        localStorage.setItem("userName", data.user.name); // Ensure the name exists here
+        localStorage.setItem("userName", data.user.name);
         setErrorMessage("");
-        router.push("/"); // Redirect after successful login
+        router.push("/");
       } else {
         setErrorMessage(result.message || "Login failed.");
       }

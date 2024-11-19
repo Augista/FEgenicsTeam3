@@ -3,24 +3,27 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Button from '@/components/button/button';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import { CgProfile } from "react-icons/cg";
 import RouterLink from '@/links/RouterLink';
 
 export default function Navbar({ className = "" }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State untuk dropdown
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userName, setUserName] = useState<string | null>(null); // Menyimpan nama user
     const pathname = usePathname();
 
-    // Memeriksa status login dan mendapatkan nama pengguna
     useEffect(() => {
         const token = localStorage.getItem("token");
-        const storedUserName = localStorage.getItem("userName"); // Mendapatkan nama pengguna dari localStorage
+        const storedUserName = localStorage.getItem("userName"); 
         setIsLoggedIn(!!token);
-        setUserName(storedUserName); // Mengatur nama pengguna jika ada
+        setUserName(storedUserName); 
     }, []);
 
     const getClassName = (href: string) => {
@@ -29,8 +32,8 @@ export default function Navbar({ className = "" }) {
 
     const links = [
         { href: "/", text: "Beranda" },
-        { href: "/contact", text: "Konsultasi" },
-        { href: "/learning", text: "Learning Path" },
+        { href: "/konsultasi", text: "Konsultasi" },
+        { href: "/learningpath", text: "Learning Path" },
         { href: "/forum", text: "Forum" },
     ];
 
@@ -38,16 +41,21 @@ export default function Navbar({ className = "" }) {
         setIsOpen(!isOpen);
     };
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
         setIsLoggedIn(false);
         setUserName(null);
-        alert("You have been logged out.");
+        toast.success("You have been logged out successfully!");
     };
 
     return (
         <>
+            <ToastContainer />
             <nav
                 className={`flex items-center fixed top-0 left-0 w-full z-50 justify-between py-6 px-6 sm:px-20 bg-white ${className}`}
             >
@@ -78,8 +86,26 @@ export default function Navbar({ className = "" }) {
 
                 <div className="hidden lg:flex items-center">
                     {isLoggedIn ? (
-                        <div className="flex items-center space-x-4">
-                            <Typography variant='t' weight='medium' className="text-[#1678F2]">Hi, {userName}!</Typography> {/* Menampilkan nama user */}
+                        <div className="relative">
+                            <div
+                                className="flex items-center space-x-4 cursor-pointer"
+                                onClick={toggleDropdown}
+                            >
+                                <Typography variant="t" weight="medium" className="text-[#1678F2]">
+                                    Hi, {userName}!
+                                </Typography>
+                                <CgProfile size={24} className='text-[#1678F2]'/>
+                            </div>
+                            {isDropdownOpen && (
+                                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg">
+                                    <button
+                                        className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     ) : (
                         <Button size="large" href="/login">
