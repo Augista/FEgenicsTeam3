@@ -3,24 +3,30 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Button from '@/components/button/button';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import { CgProfile } from "react-icons/cg";
 import RouterLink from '@/links/RouterLink';
 
 export default function Navbar({ className = "" }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+    const [role, setRole] = useState<string | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userName, setUserName] = useState<string | null>(null); // Menyimpan nama user
+    const [userName, setUserName] = useState<string | null>(null); 
     const pathname = usePathname();
 
-    // Memeriksa status login dan mendapatkan nama pengguna
     useEffect(() => {
         const token = localStorage.getItem("token");
-        const storedUserName = localStorage.getItem("userName"); // Mendapatkan nama pengguna dari localStorage
+        const storedUserName = localStorage.getItem("userName"); 
+        const storedRole = localStorage.getItem("role");
         setIsLoggedIn(!!token);
-        setUserName(storedUserName); // Mengatur nama pengguna jika ada
+        setUserName(storedUserName); 
+        setRole(storedRole);
     }, []);
 
     const getClassName = (href: string) => {
@@ -30,7 +36,7 @@ export default function Navbar({ className = "" }) {
     const links = [
         { href: "/", text: "Beranda" },
         { href: "/konsultasi", text: "Konsultasi" },
-        { href: "/learning", text: "Learning Path" },
+        { href: "/learningpath", text: "Learning Path" },
         { href: "/forum", text: "Forum" },
     ];
 
@@ -38,23 +44,36 @@ export default function Navbar({ className = "" }) {
         setIsOpen(!isOpen);
     };
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
+        localStorage.removeItem("userId");
         setIsLoggedIn(false);
         setUserName(null);
-        alert("You have been logged out.");
+        setRole(null);
+        toast.success("You have been logged out successfully!");
     };
 
     return (
         <>
+            <ToastContainer />
             <nav
                 className={`flex items-center sticky top-0 left-0 w-full z-50 justify-between py-6 px-6 sm:px-20 bg-white ${className}`}
             >
                 {/* Logo */}
                 <Link href="/" className="flex items-center scale-75 lg:scale-90">
+                    <NextImage
+                        src="/navbar/logo.png"
+                        width={40}
+                        height={40}
+                        alt="ConsultITS"
+                    />
                     <Typography as="h2" variant="h5" weight="bold" className="text-[#407BFF]">
-                        Logo | Nama
+                        ConsultITS
                     </Typography>
                 </Link>
 
@@ -78,8 +97,31 @@ export default function Navbar({ className = "" }) {
 
                 <div className="hidden lg:flex items-center">
                     {isLoggedIn ? (
-                        <div className="flex items-center space-x-4">
-                            <Typography variant='t' weight='medium' className="text-[#1678F2]">Hi, {userName}!</Typography> {/* Menampilkan nama user */}
+                        <div className="relative">
+                            <div
+                                className="flex items-center space-x-4 cursor-pointer"
+                                onClick={toggleDropdown}
+                            >
+                                <Typography variant="t" weight="medium" className="text-[#1678F2]">
+                                    Hi, {userName}!
+                                </Typography>
+                                <CgProfile size={24} className='text-[#1678F2]'/>
+                            </div>
+                            {isDropdownOpen && (
+                                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg">
+                                    <Link href='/orders'>
+                                    <div className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                                        Orders
+                                    </div>
+                                    </Link>
+                                    <button
+                                        className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     ) : (
                         <Button size="large" href="/login">

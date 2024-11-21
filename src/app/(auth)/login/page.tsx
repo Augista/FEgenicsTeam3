@@ -59,12 +59,14 @@ export default function Login() {
       const result = await response.json();
 
       if (result.success) {
-        const { token, data } = result;
-        console.log(data); // Check the response structure here
-        localStorage.setItem("token", token);
-        localStorage.setItem("userName", data.user.name); // Ensure the name exists here
+        const { data } = result;
+        console.log(data); 
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("userId", data.user.id)
+        localStorage.setItem("userRole", data.user.role)
         setErrorMessage("");
-        router.push("/"); // Redirect after successful login
+        router.push("/");
       } else {
         setErrorMessage(result.message || "Login failed.");
       }

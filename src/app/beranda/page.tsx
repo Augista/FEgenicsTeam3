@@ -24,12 +24,12 @@ export default function Page() {
             Satu Tempat untuk Kesehatanmu:
             <br /> Konsultasi, Pembelajaran, hingga Diskusi
           </Typography>
-          <Button href="" size="small" className="mt-2">
+          <Button href="#next" size="small" className="mt-2">
             Mulai Sekarang
           </Button>
         </div>
       </section>
-      <section className="h-full w-full overflow-hidden bg-light">
+      <section id="next" className="h-full w-full overflow-hidden bg-light">
         <div className="m-12 lg:m-20 text-center flex flex-col justify-start items-center">
           <div className="mb-16">
             <Typography
@@ -54,6 +54,7 @@ export default function Page() {
               description="Jaga kesehatan tubuh dan pikiranmu dengan berbicara langsung kepada dokter profesional. Dapatkan saran yang tepat untuk setiap masalah kesehatan yang kamu alami, baik fisik maupun mental."
               imageSrc="/landing/konsul.png"
               buttonText="Chat Sekarang"
+              buttonLink="/konsultasi"
               className="md:flex-row"
             />
             <FeatureCard
@@ -61,6 +62,7 @@ export default function Page() {
               description="Dari tips menjaga kebugaran fisik, panduan nutrisi, hingga kesejahteraan mental, semua bisa kamu pelajari untuk hidup yang lebih baik."
               imageSrc="/landing/belajar.png"
               buttonText="Belajar Sekarang"
+              buttonLink="/learning"
               className="md:flex-row-reverse"
             />
             <FeatureCard
@@ -68,6 +70,7 @@ export default function Page() {
               description="Bergabunglah dengan komunitas yang peduli pada kesehatan. Di sini, kamu bisa berbagi cerita, menemukan jawaban, dan saling mendukung dalam perjalanan menuju hidup yang lebih sehat."
               imageSrc="/landing/diskusi.png"
               buttonText="Diskusi Sekarang"
+              buttonLink="/forum"
               className="md:flex-row"
             />
           </div>

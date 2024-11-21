@@ -9,6 +9,7 @@ interface FeatureCardProps {
   imageSrc: string;
   buttonText: string;
   className?: string;
+  buttonLink: string;
 }
 
 function FeatureCard({
@@ -17,6 +18,7 @@ function FeatureCard({
   imageSrc,
   buttonText,
   className,
+  buttonLink,
 }: FeatureCardProps) {
   return (
     <div className={`flex flex-col w-[300px] space-y-4 md:space-y-0 md:space-x-12 md:w-fit justify-around items-center ${className}`}>
@@ -36,7 +38,7 @@ function FeatureCard({
         <Typography variant="bs" className="text-gray-400 text-center md:text-start">
           {description}
         </Typography>
-        <Button size="small" href="">
+        <Button size="small" href={buttonLink}>
           {buttonText}
         </Button>
       </div>
