@@ -1,9 +1,45 @@
+"use client";
+import { useEffect, useState } from "react";
 import Typography from "@/components/Typography";
 import Button from "@/components/button/button";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation"; 
 import NextImage from "@/components/NextImage";
 import DoctorCard from "./doctor-card";
 
 export default function Konsultasi() {
+    interface Doctor {
+        id: string;
+        name: string;
+    }
+
+    const [doctors, setDoctors] = useState<Doctor[]>([]);
+    const [loading, setLoading] = useState(true);
+    const router = useRouter();
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+    useEffect(() => {
+        const fetchDoctors = async () => {
+                try {
+                    const response = await fetch(baseUrl + "/users?role=doctor", {
+                        method: "GET",
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        setDoctors(data.data.users); 
+                    } else {
+                        console.error("Failed to fetch doctors", data);
+                    }
+                } catch (error) {
+                    console.error("Error fetching doctors", error);
+                } finally {
+                    setLoading(false); 
+                }
+        };
+
+        fetchDoctors();
+    }, []);
+
     return (
         <section className="w-full h-full">
             <section className="w-full h-screen flex items-center justify-between bg-light px-[100px]">
@@ -42,92 +78,35 @@ export default function Konsultasi() {
             <section className="w-full h-full py-[140px]">
                 <section className="flex flex-col mx-[100px] gap-16">
                     <Typography variant="h4" as="h4" weight="medium" className="text-left">
-                        Temui Dokter <span className="text-normal">X</span>!
+                        Temui Dokter <span className="text-normal">ConsultITS</span>!
                     </Typography>
                     <div className="flex flex-wrap gap-4">
-                        <Button href="" size="large">
-                            Semua
-                        </Button>
+                        {/* Category buttons */}
+                        <Button href="" size="large">Semua</Button>
                         <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
                             Dokter Umum
                         </Button>
                         <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
                             Dokter Gigi
                         </Button>
-                        <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
-                            Spesialis Kulit
-                        </Button>
-                        <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
-                            Psikiater
-                        </Button>
-                        <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
-                            Spesialis Penyakit Dalam
-                        </Button>
-                        <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
-                            Spesialis THT
-                        </Button>
-                        <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
-                            Spesialis Saraf
-                        </Button>
-                        <Button href="" size="large" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">
-                            Spesialis Jantung
-                        </Button>
+                        {/* More buttons as per your original code */}
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
-                        <DoctorCard
-                            imageSrc="/konsultasi/doctor.png"
-                            title="Dr. Victor Gunawan"
-                            description="Dokter Umum"
-                            price="Rp30.000 / 30 menit"
-                        />
+                        {/* Displaying the doctor cards */}
+                        {loading ? (
+                            <div>Loading...</div>
+                        ) : (
+                            doctors.map((doctor) => (
+                                <DoctorCard
+                                    key={doctor.id}
+                                    doctorId={doctor.id}
+                                    imageSrc="/konsultasi/doctor.svg"
+                                    title={doctor.name}
+                                    description="Dokter Umum"
+                                    price="Rp30.000 / 30 menit"
+                                />
+                            ))
+                        )}
                     </div>
                     <div className="w-full justify-center items-center flex flex-col gap-4">
                         <Button href="" size="medium" bgColor="bg-transparent outline outline-1 outline-normal transition-colors duration-300 hover:bg-button" textColor="text-black group-hover:text-white">

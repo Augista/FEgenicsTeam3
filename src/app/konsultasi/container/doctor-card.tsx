@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import Typography from "@/components/Typography";
 import NextImage from "@/components/NextImage";
@@ -8,6 +10,7 @@ interface DoctorCardProps {
   description: string;
   price: string;
   imageSrc: string;
+  doctorId: string; // Menambahkan doctorId untuk digunakan dalam URL
 }
 
 function DoctorCard({
@@ -15,9 +18,10 @@ function DoctorCard({
   description,
   price,
   imageSrc,
+  doctorId,
 }: DoctorCardProps) {
   return (
-    <div className={`w-[381px] h-[473px] rounded-[10px] border border-normal flex flex-col gap-4 justify-center items-center`}>
+    <div className="w-[381px] h-[473px] rounded-[10px] border border-normal flex flex-col gap-4 justify-center items-center">
       <NextImage
         src={imageSrc}
         alt={title}
@@ -35,10 +39,8 @@ function DoctorCard({
         {price}
       </Typography>
       <div className="flex flex-col gap-2 mt-2">
-        <Button href="" size="medium" className="w-[330px]">
-          Konsultasi Sekarang
-        </Button>
-        <Button href="" size="medium" className="w-[330px]">
+        {/* Menggunakan href untuk navigasi */}
+        <Button href={`/konsultasi/order/${doctorId}`} size="medium" className="w-[330px]">
           Buat Jadwal
         </Button>
       </div>

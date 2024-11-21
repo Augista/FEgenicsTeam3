@@ -59,10 +59,12 @@ export default function Login() {
       const result = await response.json();
 
       if (result.success) {
-        const { token, data } = result;
+        const { data } = result;
         console.log(data); 
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", data.token);
         localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("userId", data.user.id)
+        localStorage.setItem("userRole", data.user.role)
         setErrorMessage("");
         router.push("/");
       } else {
