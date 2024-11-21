@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import toast, {Toaster} from "react-hot-toast";
 import Typography from "@/components/Typography";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ButtonNoLink from "@/components/button/buttonnolink";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useCheckLogin } from "@/app/utils/auth";
+import { useRouter } from "next/navigation"; 
 
 interface OrderPageProps {
   params: {
@@ -14,15 +15,18 @@ interface OrderPageProps {
 }
 
 export default function OrderPage({ params }: OrderPageProps) {
+
+  const isLoggedIn = useCheckLogin();
+  const router = useRouter();
+
+  if (!isLoggedIn) {
+    router.push("/login");
+  }
+
   const { doctor_id } = params; 
   const [selectedDate, setSelectedDate] = useState<string>("");
-  const router = useRouter(); 
 
   const token = localStorage.getItem("token");
-  if (!token) {
-    router.push("/login");
-    return;
-  }
 
   const handleSave = async () => {
     if (!selectedDate) {
@@ -62,11 +66,9 @@ export default function OrderPage({ params }: OrderPageProps) {
           router.push("/orders"); 
         }, 3000);
       } else {
-        const errorData = await response.json();
-        toast.error(`Failed to save reservation: ${errorData.message || "Unknown error"}`);
+        console.error("Failed to save reservation", response);
       }
     } catch (error) {
-      toast.error("Error occurred while saving reservation.");
       console.error(error);
     }
   };
@@ -75,7 +77,7 @@ export default function OrderPage({ params }: OrderPageProps) {
     <>
       <Navbar />
       <section className="h-screen bg-[#ECF4FE] flex items-center justify-center px-8 sm:px-12 md:px-16 lg:px-32">
-        <ToastContainer />
+        <Toaster />
         <div className="w-full h-[400px] bg-white rounded-[10px] border border-normal z-10 flex flex-col items-center justify-center">
           <div className="w-3/4 space-y-4">
             <Typography variant="t" weight="semibold" className="text-normal">

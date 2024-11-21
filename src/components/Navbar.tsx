@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { toast, ToastContainer } from 'react-toastify';
+import toast, {Toaster} from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Button from '@/components/button/button';
@@ -15,7 +15,7 @@ import RouterLink from '@/links/RouterLink';
 export default function Navbar({ className = "" }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
-    const [role, setRole] = useState<string | null>(null);
+    const [, setRole] = useState<string | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userName, setUserName] = useState<string | null>(null); 
     const pathname = usePathname();
@@ -60,7 +60,7 @@ export default function Navbar({ className = "" }) {
 
     return (
         <>
-            <ToastContainer />
+            <Toaster />
             <nav
                 className={`flex items-center sticky top-0 left-0 w-full z-50 justify-between py-6 px-6 sm:px-20 bg-white ${className}`}
             >

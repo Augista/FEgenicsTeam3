@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useCheckLogin } from "../utils/auth";
 import Typography from "@/components/Typography";
 import toast, { Toaster } from 'react-hot-toast';
 import ButtonNoLink from "@/components/button/buttonnolink";
@@ -21,6 +23,13 @@ interface Order {
 }
 
 export default function MyOrderPage() {
+  const isLoggedIn = useCheckLogin();
+  const router = useRouter();
+
+  if (!isLoggedIn) {
+    router.push("/login");
+  }
+
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
@@ -46,7 +55,7 @@ export default function MyOrderPage() {
         toast.error("Failed to cancel order.");
       }
     } catch {
-      toast.error("An error occurred while cancelling order.");
+      console.error("An error occurred while cancelling order.");
     }
   };
 
@@ -75,7 +84,7 @@ export default function MyOrderPage() {
         toast.error("Failed to update order status.");
       }
     } catch {
-      toast.error("An error occurred while updating order status.");
+      console.error("An error occurred while updating order status.");
     }
   };
 
@@ -98,10 +107,10 @@ export default function MyOrderPage() {
           setOrders(data.reservations); 
           setRole(role);
         } else {
-          toast.error("Failed to fetch reservations.");
+          console.error("Failed to fetch orders.");
         }
       } catch {
-        toast.error("An error occurred while fetching reservations.");
+        console.error("An error occurred while fetching orders.");
       } finally {
         setLoading(false);
       }
@@ -134,6 +143,7 @@ export default function MyOrderPage() {
 
   return (
     <>
+      <Toaster />
       <Navbar />
       <section className="min-h-screen bg-[#ECF4FE] px-8 sm:px-12 md:px-16 lg:px-32 py-8">
         <Typography variant="h4" weight="bold" className="text-center text-primary mb-8">
@@ -171,8 +181,8 @@ export default function MyOrderPage() {
                           : order.status === "REJECTED"
                           ? "text-red-600"
                           : order.status === "PENDING"
-                          ? "text-orange-600"
-                          : "text-gray-600"
+                          ? "text-gray-600"
+                          : "text-yellow-600"
                       }`}
                     >
                       {order.status}
@@ -182,14 +192,14 @@ export default function MyOrderPage() {
                       <div className="flex space-x-2">
                         <ButtonNoLink
                           size="small"
-                          className="bg-[#1fb990] border-none"
+                          className="bg-green-500 border-none"
                           onClick={() => handleAcceptOrder(order.id)}
                         >
                           Accept
                         </ButtonNoLink>
                         <ButtonNoLink
                           size="small"
-                          className="bg-[#c52c2c] border-none"
+                          className="bg-red-500 border-none"
                           onClick={() => handleRejectOrder(order.id)}
                         >
                           Reject
@@ -224,8 +234,8 @@ export default function MyOrderPage() {
                       : order.status === "REJECTED"
                       ? "text-red-600"
                       : order.status === "PENDING"
-                      ? "text-orange-600"
-                      : "text-gray-600"
+                      ? "text-gray-600"
+                      : "text-yellow-600"
                   }`}
                 >
                   {order.status}

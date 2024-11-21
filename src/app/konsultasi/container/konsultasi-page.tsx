@@ -1,9 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Typography from "@/components/Typography";
-import Button from "@/components/button/button";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation"; 
+import Button from "@/components/button/button"; 
 import NextImage from "@/components/NextImage";
 import DoctorCard from "./doctor-card";
 
@@ -15,7 +13,6 @@ export default function Konsultasi() {
 
     const [doctors, setDoctors] = useState<Doctor[]>([]);
     const [loading, setLoading] = useState(true);
-    const router = useRouter();
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
     useEffect(() => {

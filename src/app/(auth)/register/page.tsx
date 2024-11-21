@@ -7,8 +7,11 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
 import NextImage from "@/components/NextImage";
 import Typography from "@/components/Typography";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -66,7 +69,7 @@ export default function Register() {
       const result = await response.json();
 
       if (result.success) {
-        setSuccessMessage("Registration successful!");
+        toast.success("Registration successful.");
         setFormData({
           name: "",
           email: "",
@@ -74,8 +77,9 @@ export default function Register() {
           password: "",
           confirmPassword: "",
         });
+        router.push("/login");
       } else {
-        setErrorMessage(result.message || "Registration failed.");
+        toast.error("Registration failed.");
       }
     } catch (error) {
       console.error("Fetch error:", error);
@@ -87,6 +91,7 @@ export default function Register() {
 
   return (
     <section className="bg-background px-8 lg:px-24 py-8 w-full h-screen">
+      <Toaster/>
       <div className="bg-white rounded-2xl w-full h-full flex">
         <div className="bg-[#EFF4FF] rounded-2xl w-[40%] hidden lg:flex items-center justify-center">
           <NextImage src="/login/login-img.png" alt="doctor" width={500} height={500} />
@@ -184,7 +189,7 @@ export default function Register() {
             </a>
             <a href="#" className="text-[#458FF6] text-center">
               <Typography variant="bs" className="text-button text-center">
-                <span className="text-gray-400"> Belum punya akun? </span>Daftar
+                <span className="text-gray-400"> Sudah punya akun? </span>Masuk
               </Typography>
             </a>
           </div>
