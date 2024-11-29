@@ -1,5 +1,4 @@
 import React from "react";
-import { useRef } from "react";
 
 interface InputProps {
   placeholder?: string;
@@ -9,8 +8,8 @@ interface InputProps {
   inputClassName?: string;
   iconClassName?: string;
   containerClassName?: string;
-  inputRef?: React.RefObject<HTMLInputElement>;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   autofocus?: boolean;
   multiline?: boolean;
@@ -28,13 +27,13 @@ const Input: React.FC<InputProps> = ({
   onChange,
 }) => {
   return (
-    <div className={`w-full  ${containerClassName}`}>
+    <div className={`w-full ${containerClassName}`}>
       {multiline ? (
         <textarea
           name={name}
           placeholder={placeholder}
           className={`w-full border-[1px] border-gray-400 rounded-lg ${inputClassName}`}
-          onChange={onChange}
+          onChange={onChange as React.ChangeEventHandler<HTMLTextAreaElement>}
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           autoFocus={autofocus}
         />
@@ -44,7 +43,7 @@ const Input: React.FC<InputProps> = ({
           name={name}
           placeholder={placeholder}
           className={`w-full border-[1px] border-gray-400 rounded-lg ${inputClassName}`}
-          onChange={onChange}
+          onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
           ref={inputRef as React.RefObject<HTMLInputElement>}
           autoFocus={autofocus}
         />
