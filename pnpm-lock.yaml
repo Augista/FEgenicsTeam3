@@ -61,6 +61,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18
     version: 18.3.1
+  '@types/react-slick':
+    specifier: ^0.23.13
+    version: 0.23.13
   eslint:
     specifier: ^8
     version: 8.57.1
@@ -475,6 +478,12 @@ packages:
 
   /@types/react-dom@18.3.1:
     resolution: {integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==}
+    dependencies:
+      '@types/react': 18.3.12
+    dev: true
+
+  /@types/react-slick@0.23.13:
+    resolution: {integrity: sha512-bNZfDhe/L8t5OQzIyhrRhBr/61pfBcWaYJoq6UDqFtv5LMwfg4NsVDD2J8N01JqdAdxLjOt66OZEp6PX+dGs/A==}
     dependencies:
       '@types/react': 18.3.12
     dev: true
