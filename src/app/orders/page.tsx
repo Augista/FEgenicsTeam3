@@ -26,7 +26,7 @@ export default function MyOrderPage() {
   const isLoggedIn = useCheckLogin();
   const router = useRouter();
 
-  if (!isLoggedIn) {
+  if (typeof window !== "undefined" && !isLoggedIn) {
     router.push("/login");
   }
 
@@ -37,6 +37,7 @@ export default function MyOrderPage() {
   const [role, setRole] = useState<string | null>(null); 
 
   const deleteOrder = async (orderId: number) => {
+    if (typeof window === "undefined") return;
     const token = localStorage.getItem("token");
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -90,6 +91,7 @@ export default function MyOrderPage() {
 
   useEffect(() => {
     const fetchOrders = async () => {
+      if (typeof window === "undefined") return;
       const token = localStorage.getItem("token");
       const role = localStorage.getItem("userRole");
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
