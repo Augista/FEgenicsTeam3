@@ -19,6 +19,12 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
+<<<<<<< Updated upstream
+=======
+    "react-slick": "^0.30.2",
+    "react-toastify": "^10.0.6",
+    "slick-carousel": "^1.8.1",
+>>>>>>> Stashed changes
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },
