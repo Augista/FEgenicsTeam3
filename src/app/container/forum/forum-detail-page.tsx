@@ -144,11 +144,11 @@ export default function ForumDetailPage() {
   const [isModalOpen, setisModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
-  const id = pathname.split("/").pop();
+  const id = pathname.split("/").pop() || "0";
   useEffect(() => {
+    const numericId = parseInt(id, 10);
     setQuestion(
-      questionList.find((question) => question.id === parseInt(id)) ||
-        ({} as QuestionBoxProps)
+      questionList.find((question) => question.id === numericId) || ({} as QuestionBoxProps)
     );
   }, [id]);
 
