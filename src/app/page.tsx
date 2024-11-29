@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import LandingPage from "./home/page";
+import LandingPage from "./beranda/page";
 import Footer from "@/components/Footer";
 
 export default function Home() {

@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="mx-auto flex flex-col space-y-8 md:space-y-0 md:flex-row md:space-x-12 lg:space-x-24">
                 <div>
                     <Typography as="h3" variant="h6" className="text-black">
-                        Logo | Nama
+                        ConsultITS
                     </Typography>
                     <Typography className="mt-4 text-gray-600">
                         Lorem Ipsum dolor sit amet lorem ipsum dolor sit amet

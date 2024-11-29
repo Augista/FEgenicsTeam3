@@ -1,6 +1,3 @@
-import Typography from "@/components/Typography";
-import Button from "@/components/button/button";
-import NextImage from "@/components/NextImage";
 import { IoCamera } from "react-icons/io5";
 import { IoImageOutline } from "react-icons/io5";
 import { FaRegFaceSmile } from "react-icons/fa6";

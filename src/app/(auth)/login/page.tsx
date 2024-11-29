@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import NextImage from "@/components/NextImage";
 import Typography from "@/components/Typography";
+import toast, {Toaster} from "react-hot-toast";
 import InputWithIcon from "@/components/form/input";
 import { FiUser } from "react-icons/fi";
 import { IoLockClosedOutline } from "react-icons/io5";
@@ -27,26 +28,26 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     setErrorMessage("");
-
+  
     if (!formData.email || !formData.password) {
       setErrorMessage("Both fields are required.");
       return;
     }
-
+  
     if (formData.password.length < 6) {
       setErrorMessage("Password must be at least 6 characters.");
       return;
     }
-
+  
     if (!termsAccepted) {
       setErrorMessage("You must accept the terms and conditions.");
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
       const response = await fetch(baseURL + '/auth/login', {
         method: "POST",
@@ -55,29 +56,38 @@ export default function Login() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const result = await response.json();
-
+  
       if (result.success) {
-        const { token, data } = result;
-        console.log(data); // Check the response structure here
-        localStorage.setItem("token", token);
-        localStorage.setItem("userName", data.user.name); // Ensure the name exists here
-        setErrorMessage("");
-        router.push("/"); // Redirect after successful login
+        const { data } = result;
+        console.log(data);
+  
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("userId", data.user.id);
+        localStorage.setItem("userRole", data.user.role);
+  
+        const currentTime = new Date().getTime();
+        localStorage.setItem("token_time", currentTime.toString());
+  
+        toast.success("Login successful!");
+        router.push("/"); 
       } else {
         setErrorMessage(result.message || "Login failed.");
       }
     } catch (error) {
       console.error("Fetch error:", error);
-      setErrorMessage("An error occurred during login.");
+      toast.error("An error occurred during login.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <section className="bg-background px-8 lg:px-24 py-8 w-full h-screen">
+      <Toaster></Toaster>
       <div className="bg-white rounded-2xl w-full h-full flex">
         <div className="w-full px-8 lg:w-3/5 p-12 lg:px-20 h-full justify-center flex flex-col space-y-3">
           <Typography variant="h5" weight="medium">
